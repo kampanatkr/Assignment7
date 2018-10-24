@@ -22,37 +22,52 @@ public class GameCharacter {
     }
 
     public void receiveItems(Item item, int quantity) {
-
-        if (itemsList.contains(item)) {
-            item.setQuantity(quantity);
-        } else {
-            itemsList.add(item);
+        if (item.getQuantity() < quantity){
+            System.out.println(item.getName()+" can not receive");
+        }else{
+            if (itemsList.contains(item)) {
+                item.setQuantity(quantity);
+            } else {
+                itemsList.add(item);
+            }
+            System.out.println("receive " + item.getName());
         }
-        System.out.println("receive " + item.getName());
-
     }
 
     public void sell(Item item, int quantity) {
-        if (quantity > 0) {
-            item.sell(quantity);
-            this.money += item.getSell() * quantity;
-            System.out.println("Sell " + item.getName() + item.getQuantity() + " piece");
+        if (item.getQuantity() < quantity){
+            System.out.println("There is not enough to buy");
+        }else {
+            if (quantity > 0) {
+                item.sell(quantity);
+                this.money += item.getSell() * quantity;
+                System.out.println("Sell " + item.getName() + item.getQuantity() + " piece");
+            }
         }
     }
 
     public void buy(Item item, int quantity) {
-        if (money > 0 && quantity > 0) {
-            item.buy(quantity);
-            this.money -= item.getPrice() * quantity;
-            System.out.println("Buy " + item.getName() + item.getQuantity() + " piece");
+        if (item.getQuantity() < quantity){
+            System.out.println("There is not enough to buy");
+        }else {
+            if (money > 0 && quantity > 0) {
+                item.buy(quantity);
+                this.money -= item.getPrice() * quantity;
+                System.out.println("Buy " + item.getName() + item.getQuantity() + " piece");
+            }
         }
     }
 
     public void useItem(UsableItem item) {
-        this.damage += item.getPlusDamage();
-        this.hp += item.getPlusHp();
-        this.defense += item.getPlusDefense();
-        item.setQuantity(-1);
+        if (item.getQuantity() < 0){
+            System.out.println("can not use "+item.getName());
+        }else {
+            this.damage += item.getPlusDamage();
+            this.hp += item.getPlusHp();
+            this.defense += item.getPlusDefense();
+            item.setQuantity(-1);
+            System.out.println("use "+item.getName());
+        }
     }
 
     public void catchBy(MonsterBall ball) {
@@ -82,6 +97,6 @@ public class GameCharacter {
                 " Defense: " + this.defense +
                 " Money: " + this.money +
                 " LV:" + this.level +
-                " exp: " + this.exp;
+                " EXP: " + this.exp;
     }
 }
