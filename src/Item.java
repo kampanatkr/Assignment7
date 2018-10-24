@@ -1,28 +1,28 @@
 public class Item {
     private String name;
-    private int quatity;
-    private double sell;
+    private int quantity;
     private double price;
+    private double sell;
 
-    public Item(String name, int quatity, double price, double sell) {
+    public Item(String name, int quantity, double price, double sell) {
         this.name = name;
-        this.quatity = quatity;
-        this.price = price;
-        this.sell = sell;
+        this.quantity = quantity;
+        this.price = price; // ราคาซื้อ
+        this.sell = sell; // ราคาขาย
     }
 
     public void sell(int quatity){
-        this.quatity -= quatity;
+        this.quantity -= quatity;
     }
 
     public void buy(int quatity){
-        this.quatity += quatity;
+        this.quantity += quatity;
     }
 
     @Override
     public String toString() {
         return "Item{name='" + this.name
-                + "', quatity=" + this.quatity
+                + "', quantity=" + this.quantity
                 + ", price=" + this.price
                 + ", sellFor=" + this.sell
                 + "}";
@@ -32,8 +32,12 @@ public class Item {
         return name;
     }
 
-    public int getQuatity() {
-        return quatity;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity += quantity;
     }
 
     public double getSell() {
