@@ -24,7 +24,7 @@ public class GameCharacter {
 
     public void receiveItems(Item item, int quantity) {
         if (item.getQuantity() < quantity) {
-            System.err.println(item.getName() + " can not received");
+            System.out.println(item.getName() + " can not received");
         } else {
             if (itemsList.contains(item)) {
                 item.setQuantity(quantity);
@@ -37,25 +37,25 @@ public class GameCharacter {
 
     public void sell(Item item, int quantity) {
         if (item.getQuantity() < quantity) {
-            System.err.println("There is not enough to sell");
+            System.out.println("There is not enough to sell");
         } else {
             if (quantity > 0) {
                 item.sell(quantity);
                 this.money += item.getSell() * quantity;
-                System.out.println("Sell " + item.getName() + item.getQuantity() + " piece");
+                System.out.println("Sell " + item.getName() + " " + quantity + " piece");
             }
         }
     }
 
     public void buy(Item item, int quantity) {
         if (item.getQuantity() < quantity) {
-            System.err.println("There is not enough to buy");
+            System.out.println("There is not enough to buy");
         } else {
             if (money > 0 && quantity > 0) {
                 item.buy(quantity);
                 this.money -= item.getPrice() * quantity;
-                System.out.println("Buy " + item.getName() + item.getQuantity() + " piece");
             }
+            System.out.println("Buy " + item.getName() + " " + item.getQuantity() + " piece");
         }
     }
 
@@ -74,35 +74,35 @@ public class GameCharacter {
     public void catchBy(MonsterBall ball) {
         if (ball.getQuantity() > 1) {
             ball.setQuantity(-1);
-            exp += 100;
-            if (exp > 1000){
+            exp += 1100;
+            if (exp > 1000) {
                 level += 1;
-                exp = Math.floorMod(exp,1000);
+                exp = Math.floorMod(exp, 1000);
 //                System.out.println("exp = "+exp);
-            }else{
-
             }
-            System.out.println("Catch successful");
+            System.out.println("Catch succeed");
         } else {
             ball.setQuantity(0);
-            System.err.println("Catch failed");
+            System.out.println("Catch failed");
         }
     }
 
     public void learnSkill(Skill skill) {
         if (skillList.contains(skill)) {
             skillList.get(skillList.indexOf(skill)).increaseLevel();
+            System.out.println("skill lv: " + skillList.get(skillList.indexOf(skill)).getLevel());
         } else {
             skillList.add(skill);
+            System.out.println("add skill");
         }
 
     }
 
     public void castSpell(Skill skill) {
-        if (skill.getType().equals("active")) {
+        if (skill.getType().matches("[aA][Cc][Tt][Ii][Vv][Ee]")) {
             System.out.println("active skill");
-        } else {
-            System.err.println("passive skill can't cast");
+        } else if (skill.getType().matches("[pP][Aa][Ss][Ss][Ii][Vv][Ee]")) {
+            System.out.println("passive skill can't cast");
         }
     }
 

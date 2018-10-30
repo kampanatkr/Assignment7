@@ -10,19 +10,37 @@ public class Main {
         Skill cba = new Skill(1,"PASSIVE");
 
         GameCharacter rogueKnight = new GameCharacter("RogueKnight",500,300,150);
+        System.out.println("-----New Character-----");
+        System.out.println(rogueKnight.toString());
+
+        System.out.println("-----Receive Items-----");
         rogueKnight.receiveItems(masterBall,10);
         rogueKnight.receiveItems(potion,100);
         rogueKnight.receiveItems(divineRapier,1);
         rogueKnight.receiveItems(ultraBall,5);
+
+        System.out.println("-----Shopping Item-----");
+        rogueKnight.buy(masterBall,1);
+        rogueKnight.sell(potion,10);
+
+        System.out.println("-----Use Item-----");
+        rogueKnight.useItem(potion);
+
+        System.out.println("-----Catch Monters-----");
+        rogueKnight.catchBy(masterBall);
+        rogueKnight.catchBy(ultraBall);
+
+        System.out.println("-----Learn Skill-----");
         rogueKnight.learnSkill(reviveLife);
         rogueKnight.learnSkill(abc);
         rogueKnight.learnSkill(cba);
+        rogueKnight.learnSkill(abc);
 
-        rogueKnight.catchBy(masterBall);
-        rogueKnight.buy(masterBall,1);
-        System.out.println(rogueKnight.toString());
-        rogueKnight.useItem(potion);
-        rogueKnight.catchBy(ultraBall);
+        System.out.println("-----Cast Spell-----");
+        rogueKnight.castSpell(abc);
+        rogueKnight.castSpell(cba);
+
+        System.out.println("---------------------------------");
         System.out.println(rogueKnight.toString());
 
     }

@@ -7,7 +7,7 @@ public class Skill {
         if (type.matches("[pP][Aa][Ss][Ss][Ii][Vv][Ee]") || type.matches("[aA][Cc][Tt][Ii][Vv][Ee]")){
             this.type = type;
         }else{
-            System.err.println("type skill error");
+            System.out.println("type skill error");
         }
     }
 
